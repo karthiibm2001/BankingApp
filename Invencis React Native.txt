@@ -1,0 +1,21 @@
+React Native 
+
+SafeAreaView instead of View  --> Start the screen from status bar usefull in ios.
+
+Button --> Only color change is possible. Self closing tag
+
+Textinput  --> Self closing tag, Styles can be applied
+
+Wrap up in ScrollView anything you want under scrollable
+
+Flatlist --> selfclosing tag  --> FlatList is prefferable than scrollable because of rendering property
+
+Justifycontent works in main axis
+
+Alignitems works in cross axis
+
+Strech won't work if there is dimensions like height and width
+
+AlignSelf for child to overwrite parent alignitems
+
+FlexWrap Align content  -->
