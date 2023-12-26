@@ -18,4 +18,8 @@ Strech won't work if there is dimensions like height and width
 
 AlignSelf for child to overwrite parent alignitems
 
-FlexWrap Align content  -->
+Align content can be used only when FlexWrap is used 
+
+Relative --> to the container
+
+Absolute  --> to the window
