@@ -1,13 +1,14 @@
 import React from 'react';
-import { StatusBar, Image, TextInput, TouchableOpacity, Text, View, KeyboardAvoidingView, Platform } from 'react-native';
+import { StatusBar, Image, TextInput, TouchableOpacity, Text, View, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 
 function LoginPage({ navigation }) {
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={150} // Adjust this value as needed
     >
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         {/* Company Logo and Name */}
         <View style={styles.logoContainer}>
           <Text style={styles.companyName}>ICICI Bank</Text>
@@ -64,22 +65,23 @@ function LoginPage({ navigation }) {
           <Text style={styles.messageText}>Press "Next" to receive OTP on your mobile</Text>
           <TouchableOpacity
             style={styles.nextButton}
-            onPress={() => navigation.navigate('NextPage')}
+            onPress={() => navigation.navigate('OtpPage')}
           >
             <Text style={styles.nextButtonText}>Next</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
 
 const styles = {
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#fff',
-    paddingHorizontal: 20,
+    paddingHorizontal: 50,
     paddingTop: 50,
+    justifyContent: 'center', // You can adjust this based on your layout
   },
   logoContainer: {
     alignItems: 'center',
@@ -138,7 +140,6 @@ const styles = {
     color: 'white',
     fontWeight: 'bold',
   },
-
   label: {
     marginBottom: 5,
     color: 'black',
