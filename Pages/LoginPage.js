@@ -6,7 +6,7 @@ function LoginPage({ navigation }) {
     <KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={150} // Adjust this value as needed
+    //  keyboardVerticalOffset={150} // Adjust this value as needed
     >
       <ScrollView contentContainerStyle={styles.container}>
         {/* Company Logo and Name */}
