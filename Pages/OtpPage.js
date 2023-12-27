@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { TextInput, TouchableOpacity, Text, View } from 'react-native';
+import { TextInput, TouchableOpacity, Text, View, KeyboardAvoidingView, Platform } from 'react-native';
 
 function OtpPage() {
   const otpInputs = Array(6).fill(null).map(() => useRef(null));
@@ -11,41 +11,44 @@ function OtpPage() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Enter your OTP below</Text>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <View>
+        <Text style={styles.label}>Enter your OTP below</Text>
 
-      <View style={styles.inputContainer}>
-        <View style={styles.otpContainer}>
-          {otpInputs.map((ref, index) => (
-            <TextInput
-              ref={ref}
-              key={index}
-              style={styles.otpInput}
-              placeholder="-"
-              maxLength={1}
-              keyboardType="numeric"
-              onChangeText={(text) => {
-                if (text.length === 1) {
-                  focusNextInput(index);
-                }
-              }}
-            />
-          ))}
+        <View style={styles.inputContainer}>
+          <View style={styles.otpContainer}>
+            {otpInputs.map((ref, index) => (
+              <TextInput
+                ref={ref}
+                key={index}
+                style={styles.otpInput}
+                placeholder="-"
+                maxLength={1}
+                keyboardType="numeric"
+                onChangeText={(text) => {
+                  if (text.length === 1) {
+                    focusNextInput(index);
+                  }
+                }}
+              />
+            ))}
+          </View>
+        </View>
+
+        {/* Resend OTP Options */}
+        <View style={styles.optionsContainer}>
+          <TouchableOpacity>
+            <Text style={styles.optionText}>Resend OTP to Mobile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.optionText}>Resend OTP to Email</Text>
+          </TouchableOpacity>
         </View>
       </View>
-
-      {/* Resend OTP Options */}
-      <View style={styles.optionsContainer}>
-        <TouchableOpacity>
-          <Text style={styles.optionText}>Click here to Resend OTP to Mobile</Text>
-        </TouchableOpacity>
-        </View>
-        <View>
-        <TouchableOpacity>
-          <Text style={styles.optionText}>Click here to Resend OTP to Email</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -54,7 +57,7 @@ const styles = {
     flex: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 20,
-    paddingTop: 200,
+    justifyContent: 'center',
   },
   inputContainer: {
     marginBottom: 20,
@@ -62,6 +65,8 @@ const styles = {
   label: {
     marginBottom: 10,
     color: 'black',
+    fontSize: 18,
+    textAlign: 'center',
   },
   otpContainer: {
     flexDirection: 'row',
@@ -70,11 +75,13 @@ const styles = {
   otpInput: {
     width: 40,
     height: 40,
-    borderColor: 'gray',
+    borderColor: '#ccc',
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
     textAlign: 'center',
+    borderRadius: 5,
+    fontSize: 18,
   },
   optionsContainer: {
     flexDirection: 'row',
@@ -82,7 +89,8 @@ const styles = {
     marginBottom: 20,
   },
   optionText: {
-    color: 'blue',
+    color: '#0046be', // ICICI Bank color
+    textDecorationLine: 'underline',
   },
 };
 

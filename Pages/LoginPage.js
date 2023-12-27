@@ -1,24 +1,54 @@
 import React from 'react';
-import { StatusBar, Image, TextInput, TouchableOpacity, Text, View, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { StatusBar, Image, TextInput, TouchableOpacity, Text, View, KeyboardAvoidingView, Platform, ScrollView, Keyboard } from 'react-native';
 
 function LoginPage({ navigation }) {
+// State to manage the keyboard offset
+const [keyboardOffset, setKeyboardOffset] = React.useState(0);
+
+// useEffect to handle keyboard show/hide events
+React.useEffect(() => {
+  // Add listener for when the keyboard appears
+  const keyboardDidShowListener = Keyboard.addListener(
+    'keyboardDidShow',
+    (event) => {
+      // When the keyboard appears, adjust the offset by adding the keyboard's height plus 20 units
+      setKeyboardOffset(event.endCoordinates.height + 20); // Adjust as needed
+    }
+  );
+
+  // Add listener for when the keyboard hides
+  const keyboardDidHideListener = Keyboard.addListener(
+    'keyboardDidHide',
+    () => {
+      // When the keyboard hides, reset the offset to 0
+      setKeyboardOffset(0);
+    }
+  );
+
+  // Cleanup function to remove the listeners when the component unmounts
+  return () => {
+    keyboardDidShowListener.remove();
+    keyboardDidHideListener.remove();
+  };
+}, []); // Empty dependency array ensures this effect runs only once, similar to componentDidMount
+
+
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    //  keyboardVerticalOffset={150} // Adjust this value as needed
+      behavior={Platform.OS === 'ios' ? 'padding' : null}
+      keyboardVerticalOffset={keyboardOffset}
     >
       <ScrollView contentContainerStyle={styles.container}>
-        {/* Company Logo and Name */}
         <View style={styles.logoContainer}>
           <Text style={styles.companyName}>ICICI Bank</Text>
           <Image
             style={styles.logo}
-            source={require('../assets/bankLogo.png')} // Replace with your logo path
+            source={require('../assets/bankLogo.png')}
           />
         </View>
 
-        {/* ID and Password Input Fields */}
         <View style={styles.inputContainer}>
           <View>
             <Text style={styles.label}>Bank ID</Text>
@@ -37,7 +67,6 @@ function LoginPage({ navigation }) {
           </View>
         </View>
 
-        {/* Forgot Password and Update Password Options */}
         <View style={styles.optionsContainer}>
           <TouchableOpacity>
             <Text style={styles.optionText}>Forgot Password</Text>
@@ -47,12 +76,10 @@ function LoginPage({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        {/* Captcha Image and Input Field */}
         <View style={styles.captchaContainer}>
-          {/* Add your captcha image component here */}
           <Image
             style={styles.captchaLogo}
-            source={require('../assets/capcha.jpeg')} // Replace with your logo path
+            source={require('../assets/capcha.jpeg')}
           />
           <TextInput
             style={styles.input}
@@ -60,7 +87,6 @@ function LoginPage({ navigation }) {
           />
         </View>
 
-        {/* Message and Next Button */}
         <View style={styles.messageContainer}>
           <Text style={styles.messageText}>Press "Next" to receive OTP on your mobile</Text>
           <TouchableOpacity
@@ -79,33 +105,34 @@ const styles = {
   container: {
     flexGrow: 1,
     backgroundColor: '#fff',
-    paddingHorizontal: 50,
-    paddingTop: 50,
-    justifyContent: 'center', // You can adjust this based on your layout
+    paddingHorizontal: 30,
+    paddingTop: 150,
   },
   logoContainer: {
     alignItems: 'center',
     marginBottom: 20,
   },
   logo: {
-    width: 200,
-    height: 50,
+    width: 180,
+    height: 60,
     resizeMode: 'contain',
   },
   companyName: {
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: 'bold',
     marginTop: 10,
+    color:'red', // ICICI Bank color
   },
   inputContainer: {
     marginBottom: 20,
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: '#ccc',
     borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
+    marginBottom: 15,
+    paddingHorizontal: 15,
+    borderRadius: 5,
   },
   optionsContainer: {
     flexDirection: 'row',
@@ -113,36 +140,40 @@ const styles = {
     marginBottom: 20,
   },
   optionText: {
-    color: 'blue',
+    color: '#0046be',
   },
   captchaContainer: {
-    marginBottom: 10,
+    marginBottom: 20,
     alignItems: 'center',
   },
   captchaLogo: {
-    width: 200,
-    height: 100,
+    width: 180,
+    height: 90,
     resizeMode: 'contain',
+    marginBottom: 10,
   },
   messageContainer: {
     alignItems: 'center',
   },
   messageText: {
-    marginBottom: 10,
+    marginBottom: 15,
+    color: '#555',
   },
   nextButton: {
-    backgroundColor: 'blue',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    backgroundColor: '#0046be',
+    paddingVertical: 12,
+    paddingHorizontal: 25,
     borderRadius: 5,
+    alignItems: 'center',
   },
   nextButtonText: {
     color: 'white',
     fontWeight: 'bold',
+    fontSize: 16,
   },
   label: {
-    marginBottom: 5,
-    color: 'black',
+    marginBottom: 8,
+    color: '#333',
   },
 };
 

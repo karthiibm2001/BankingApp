@@ -11,8 +11,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginPage">
-        <Stack.Screen name="LoginPage" component={LoginPage} />
-        <Stack.Screen name="OtpPage" component={OtpPage} />
+        <Stack.Screen name="LoginPage" component={LoginPage} options={{ headerShown: false }} />
+        <Stack.Screen name="OtpPage" component={OtpPage}  options={{ headerShown: true }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
