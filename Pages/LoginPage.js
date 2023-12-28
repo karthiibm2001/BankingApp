@@ -107,6 +107,7 @@ const styles = {
     backgroundColor: '#fff',
     paddingHorizontal: 30,
     paddingTop: 150,
+    
   },
   logoContainer: {
     alignItems: 'center',
@@ -121,7 +122,7 @@ const styles = {
     fontSize: 30,
     fontWeight: 'bold',
     marginTop: 10,
-    color:'red', // ICICI Bank color
+    color:'#0D3880', // ICICI Bank color
   },
   inputContainer: {
     marginBottom: 20,
@@ -140,7 +141,7 @@ const styles = {
     marginBottom: 20,
   },
   optionText: {
-    color: '#0046be',
+    color: '#0D3880',
   },
   captchaContainer: {
     marginBottom: 20,
@@ -160,7 +161,7 @@ const styles = {
     color: '#555',
   },
   nextButton: {
-    backgroundColor: '#0046be',
+    backgroundColor: '#0D3880',
     paddingVertical: 12,
     paddingHorizontal: 25,
     borderRadius: 5,

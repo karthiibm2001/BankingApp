@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { TextInput, TouchableOpacity, Text, View, KeyboardAvoidingView, Platform } from 'react-native';
+import { TextInput, TouchableOpacity, Text, View, KeyboardAvoidingView, Platform, Image } from 'react-native';
 
 function OtpPage() {
   const otpInputs = Array(6).fill(null).map(() => useRef(null));
@@ -16,6 +16,13 @@ function OtpPage() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <View>
+        <View style={styles.logoContainer}>
+          <Text style={styles.companyName}>ICICI Bank</Text>
+          <Image
+            style={styles.logo}
+            source={require('../assets/bankLogo.png')}
+          />
+        </View>
         <Text style={styles.label}>Enter your OTP below</Text>
 
         <View style={styles.inputContainer}>
@@ -57,8 +64,8 @@ const styles = {
     flex: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 20,
-    justifyContent: 'center',
-  },
+    //justifyContent: 'center',
+    },
   inputContainer: {
     marginBottom: 20,
   },
@@ -89,8 +96,24 @@ const styles = {
     marginBottom: 20,
   },
   optionText: {
-    color: '#0046be', // ICICI Bank color
+    color: '#0D3880', // ICICI Bank color
     textDecorationLine: 'underline',
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 50,
+    marginTop:100,
+  },
+  logo: {
+    width: 180,
+    height: 60,
+    resizeMode: 'contain',
+  },
+  companyName: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginTop: 10,
+    color:'#0D3880', // ICICI Bank color
   },
 };
 
