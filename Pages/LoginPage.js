@@ -131,7 +131,7 @@ const styles = {
     height: 40,
     borderColor: '#ccc',
     borderWidth: 1,
-    marginBottom: 15,
+    marginBottom: 10,
     paddingHorizontal: 15,
     borderRadius: 5,
   },
