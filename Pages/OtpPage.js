@@ -70,7 +70,7 @@ const styles = {
     marginBottom: 20,
   },
   label: {
-    marginBottom: 10,
+    marginBottom: 25,
     color: 'black',
     fontSize: 18,
     textAlign: 'center',
