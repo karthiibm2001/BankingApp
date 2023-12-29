@@ -106,7 +106,7 @@ const styles = {
     flexGrow: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 30,
-    paddingTop: 150,
+    paddingTop: 25,
     
   },
   logoContainer: {

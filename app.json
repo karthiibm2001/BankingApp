@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.bankingapp.BankingApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2ee12269-ef4d-4e5f-9e3b-6e434ab3b4e5"
+      }
+    },
+    "owner": "bankingapp"
   }
 }

@@ -32,7 +32,7 @@ function OtpPage() {
                 ref={ref}
                 key={index}
                 style={styles.otpInput}
-                placeholder="-"
+                placeholder="_"
                 maxLength={1}
                 keyboardType="numeric"
                 onChangeText={(text) => {
